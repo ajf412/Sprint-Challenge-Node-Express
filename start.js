@@ -1,5 +1,8 @@
 // DEPENDENCIES
 import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+
 const server = express();
 
 
@@ -9,6 +12,8 @@ import actionRoutes from './routers/actionRoutes';
 
 // USE MIDDLEWARE
 server.use(express.json());
+server.use(cors());
+server.use(helmet());
 server.use('/api/projects', projectRoutes);
 server.use('/api/actions', actionRoutes);
 
@@ -18,5 +23,5 @@ server.get('/', (req, res) => {
 });
 
 // START SERVER
-const port = 3000;
+const port = 5000;
 server.listen(port, () => console.log(`\n== API Running on port ${port} ==\n`));
